@@ -19,7 +19,3 @@
 
 ### 手早く：画像埋め込み版をそのまま貼る
 `dist/prod-cebu-inline.html` の中身を「カスタムHTML」ブロックに貼る（PRODIAページと同じ方式）。
-
-## VOICES（社内メンバー）の差し替え
-`index.html` の `VOICES` セクションのコメントに手順を書いてある。差し替えたら `build.py` を再実行する。
-写真は `images/voice-01.jpg` などの名前で `images/` に置く。

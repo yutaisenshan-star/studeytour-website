@@ -17,8 +17,8 @@
 :where(.cst-lp) :is(h1,h2,h3,p,ul,ol,li,figure,blockquote){margin:0;padding:0}
 :where(.cst-lp) :is(ul,ol){list-style:none}
 /* 写真枠: 縦長写真でも枠の比率を崩さない */
-.cst-card-photo,.cst-step-photo,.cst-voice-photo,.cst-tl-photo,.cst-purpose-photo,.cst-safety-photo,.cst-msg-photo{position:relative;overflow:hidden}
-.cst-card-photo img,.cst-step-photo img,.cst-voice-photo img,.cst-tl-photo img,.cst-purpose-photo img,.cst-safety-photo img,.cst-msg-photo img{position:absolute;inset:0}
+.cst-card-photo,.cst-step-photo,.cst-tl-photo,.cst-purpose-photo,.cst-safety-photo,.cst-msg-photo{position:relative;overflow:hidden}
+.cst-card-photo img,.cst-step-photo img,.cst-tl-photo img,.cst-purpose-photo img,.cst-safety-photo img,.cst-msg-photo img{position:absolute;inset:0}
 
 /* layout */
 .cst-sec{padding:clamp(56px,7vw,96px) clamp(16px,3vw,34px)}
@@ -144,25 +144,9 @@
 .cst-bars-cap{font-size:12.5px;color:#9fb0cd;margin-top:6px;text-align:right}
 @media (max-width:820px){.cst-case{grid-template-columns:1fr}.cst-barrow{grid-template-columns:78px 1fr 70px}.cst-barrow-num{font-size:28px}}
 
-/* voices (placeholders) */
-.cst-voices{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.cst-voice{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 4px 12px rgba(22,41,78,.06)}
-.cst-voice-photo{aspect-ratio:4/3;background:#eef2f8;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
-.cst-voice-photo img{width:100%;height:100%;object-fit:cover}
-.cst-voice-photo.is-empty{background:repeating-linear-gradient(135deg,#eef2f8 0 12px,#e6ecf5 12px 24px)}
-.cst-voice-photo.is-empty span{font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;letter-spacing:.24em;color:#8a97ad}
-.cst-voice-body{padding:20px 22px 24px}
-.cst-voice-meta{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;font-weight:700}
-.cst-voice-meta span{background:var(--pale);color:var(--navy);border-radius:6px;padding:2px 9px}
-.cst-voice-title{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:18px;color:var(--navy);line-height:1.5;margin:12px 0 8px}
-.cst-voice-text{font-size:14px;color:var(--muted)}
-.cst-voice-name{margin-top:12px;font-size:13px;font-weight:700;color:var(--navy)}
-.cst-voice.is-empty .cst-voice-title,.cst-voice.is-empty .cst-voice-text,.cst-voice.is-empty .cst-voice-name{color:#9aa5b8}
-@media (max-width:900px){.cst-voices{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
-
 /* history */
-.cst-tl{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 18px;-webkit-overflow-scrolling:touch;scrollbar-color:#7fa8f5 transparent}
-.cst-tl-item{flex:0 0 clamp(220px,26vw,280px);scroll-snap-align:start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;overflow:hidden}
+.cst-tl{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 18px;-webkit-overflow-scrolling:touch;scrollbar-color:var(--blue) transparent}
+.cst-tl-item{flex:0 0 clamp(220px,26vw,280px);scroll-snap-align:start;background:linear-gradient(150deg,#244680,var(--navy));border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(22,41,78,.1)}
 .cst-tl-photo{aspect-ratio:4/3;background:#23365c}
 .cst-tl-photo img{width:100%;height:100%;object-fit:cover}
 .cst-tl-body{padding:12px 16px 16px;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
@@ -172,7 +156,7 @@
 .cst-tl-next-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:.3em;color:#dbe6ff}
 .cst-tl-next-date{font-family:'Montserrat',sans-serif;font-weight:800;font-size:30px;line-height:1.25;margin-top:8px}
 .cst-tl-next-text{font-size:13.5px;margin-top:10px;color:#e3ebff}
-.cst-tl-hint{font-size:12px;color:#9fb0cd;text-align:right;font-family:'Montserrat',sans-serif;letter-spacing:.14em;font-weight:700}
+.cst-tl-hint{font-size:12px;color:#8a97ad;text-align:right;font-family:'Montserrat',sans-serif;letter-spacing:.14em;font-weight:700}
 
 /* safety */
 .cst-safety{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,56px);align-items:center}
@@ -450,54 +434,8 @@
     </div>
   </section>
 
-  <!-- ============ 7. VOICES（社内メンバーの原稿待ち・枠のみ） ============
-       差し替え方:
-       1. .cst-voice から is-empty を外す
-       2. .cst-voice-photo の is-empty を外し、中の <span> を 画像（例: images/voice-01.jpg）の img タグ に替える
-       3. [ ] の項目を本文に置き換える（見出し1行・本文2〜3行が目安）
-  -->
-  <section class="cst-sec" id="cst-voices">
-    <div class="cst-wrap">
-      <div class="cst-head cst-rv">
-        <span class="cst-eyebrow">VOICES</span>
-        <h2 class="cst-h2">8日間のあとに、<br><em>次の一歩</em>が続いていく。</h2>
-        <span class="cst-bar"></span>
-      </div>
-      <div class="cst-voices">
-        <article class="cst-voice is-empty cst-rv">
-          <div class="cst-voice-photo is-empty"><span>PHOTO</span></div>
-          <div class="cst-voice-body">
-            <p class="cst-voice-meta"><span>[第◯回・20XX年◯月 参加]</span><span>[現在の所属・役割]</span></p>
-            <h3 class="cst-voice-title">[見出し：参加前の自分や、印象に残った場面を1行で]</h3>
-            <p class="cst-voice-text">[本文：セブで何に挑戦し、どう動きを変えたか。帰国後に続いている一歩。2〜3行]</p>
-            <p class="cst-voice-name">[名前]</p>
-          </div>
-        </article>
-        <article class="cst-voice is-empty cst-rv">
-          <div class="cst-voice-photo is-empty"><span>PHOTO</span></div>
-          <div class="cst-voice-body">
-            <p class="cst-voice-meta"><span>[第◯回・20XX年◯月 参加]</span><span>[現在の所属・役割]</span></p>
-            <h3 class="cst-voice-title">[見出し：参加前の自分や、印象に残った場面を1行で]</h3>
-            <p class="cst-voice-text">[本文：セブで何に挑戦し、どう動きを変えたか。帰国後に続いている一歩。2〜3行]</p>
-            <p class="cst-voice-name">[名前]</p>
-          </div>
-        </article>
-        <article class="cst-voice is-empty cst-rv">
-          <div class="cst-voice-photo is-empty"><span>PHOTO</span></div>
-          <div class="cst-voice-body">
-            <p class="cst-voice-meta"><span>[第◯回・20XX年◯月 参加]</span><span>[現在の所属・役割]</span></p>
-            <h3 class="cst-voice-title">[見出し：参加前の自分や、印象に残った場面を1行で]</h3>
-            <p class="cst-voice-text">[本文：セブで何に挑戦し、どう動きを変えたか。帰国後に続いている一歩。2〜3行]</p>
-            <p class="cst-voice-name">[名前]</p>
-          </div>
-        </article>
-      </div>
-      <p class="cst-note cst-rv" style="text-align:center">掲載内容は本人の体験に基づきます。感じ方や変化には個人差があります。</p>
-    </div>
-  </section>
-
-  <!-- ============ 8. HISTORY ============ -->
-  <section class="cst-sec cst-bg-navy" id="cst-history">
+  <!-- ============ 7. HISTORY ============ -->
+  <section class="cst-sec" id="cst-history">
     <div class="cst-wrap">
       <div class="cst-head cst-rv">
         <span class="cst-eyebrow">HISTORY</span>
@@ -525,7 +463,7 @@
     </div>
   </section>
 
-  <!-- ============ 9. SAFETY ============ -->
+  <!-- ============ 8. SAFETY ============ -->
   <section class="cst-sec cst-bg-pale" id="cst-safety">
     <div class="cst-wrap">
       <div class="cst-head cst-rv">
@@ -548,7 +486,7 @@
     </div>
   </section>
 
-  <!-- ============ 10. MESSAGE ============ -->
+  <!-- ============ 9. MESSAGE ============ -->
   <section class="cst-sec" id="cst-message">
     <div class="cst-wrap cst-narrow cst-msg">
       <div class="cst-msg-side cst-rv">
@@ -568,7 +506,7 @@
     </div>
   </section>
 
-  <!-- ============ 11. FROM PROD ============ -->
+  <!-- ============ 10. FROM PROD ============ -->
   <section class="cst-sec cst-bg-navy" id="cst-prod">
     <div class="cst-wrap cst-narrow cst-prod cst-rv">
       <span class="cst-eyebrow">FROM PROD</span>
