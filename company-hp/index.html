@@ -1,0 +1,620 @@
+<!--
+  セブ島スタディツアー 紹介ページ（株式会社PROD HP掲載用）
+  構成書: docs/company-hp/STRUCTURE.md
+  画像は images/ を相対参照。WordPressへ貼る版は build.py で作る（README参照）。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+.cst-lp{--navy:#16294e;--navy-2:#1c335f;--navy-3:#0f1d3a;--blue:#2f63e0;--blue-d:#1a47bd;--blue-l:#9dc0ff;--blue-ll:#a9c6ff;--text:#444f63;--muted:#5c6675;--line:#e3e9f2;--pale:#eef2f8;
+  font-family:'Noto Sans JP',sans-serif;color:var(--text);line-height:1.85;font-size:15px;background:#fff;-webkit-font-smoothing:antialiased;overflow-x:clip}
+/* リセットは :where() で詳細度0にし、下の個別指定を必ず優先させる */
+:where(.cst-lp) *,:where(.cst-lp) *::before,:where(.cst-lp) *::after{box-sizing:border-box}
+:where(.cst-lp) img{display:block;max-width:100%}
+:where(.cst-lp) a{color:inherit}
+:where(.cst-lp) :is(h1,h2,h3,p,ul,ol,li,figure,blockquote){margin:0;padding:0}
+:where(.cst-lp) :is(ul,ol){list-style:none}
+/* 写真枠: 縦長写真でも枠の比率を崩さない */
+.cst-card-photo,.cst-step-photo,.cst-voice-photo,.cst-tl-photo,.cst-purpose-photo,.cst-safety-photo,.cst-msg-photo{position:relative;overflow:hidden}
+.cst-card-photo img,.cst-step-photo img,.cst-voice-photo img,.cst-tl-photo img,.cst-purpose-photo img,.cst-safety-photo img,.cst-msg-photo img{position:absolute;inset:0}
+
+/* layout */
+.cst-sec{padding:clamp(56px,7vw,96px) clamp(16px,3vw,34px)}
+.cst-wrap{max-width:1180px;margin:0 auto}
+.cst-narrow{max-width:860px;margin:0 auto}
+.cst-bg-pale{background:var(--pale)}
+.cst-bg-navy{background:linear-gradient(165deg,var(--navy-2) 0%,var(--navy) 60%,var(--navy-3) 100%);color:#d7e1f2}
+
+/* section head */
+.cst-head{text-align:center;margin-bottom:clamp(36px,5vw,56px)}
+.cst-eyebrow{display:inline-block;font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:.3em;color:var(--blue);margin-bottom:14px}
+.cst-bg-navy .cst-eyebrow{color:#7fa8f5}
+.cst-h2{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:clamp(25px,4vw,42px);line-height:1.35;letter-spacing:.01em;color:var(--navy)}
+.cst-bg-navy .cst-h2{color:#fff}
+.cst-h2 em{font-style:normal;color:var(--blue)}
+.cst-bg-navy .cst-h2 em{color:var(--blue-l)}
+.cst-bar{display:block;width:46px;height:3px;background:var(--blue);border-radius:2px;margin:18px auto 0}
+.cst-lead{margin-top:20px;font-size:clamp(14.5px,1.6vw,16px);color:var(--muted)}
+.cst-bg-navy .cst-lead{color:#c3d0e6}
+.cst-note{font-size:12.5px;color:#7a8597;margin-top:18px}
+.cst-bg-navy .cst-note{color:#9fb0cd}
+
+/* header */
+.cst-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #e6ebf3}
+.cst-header-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px clamp(16px,3vw,34px)}
+.cst-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.cst-logo-en{font-family:'Montserrat',sans-serif;font-weight:800;font-size:23px;letter-spacing:.04em;color:var(--navy)}
+.cst-logo-ja{font-size:10px;font-weight:700;color:#6b7689;border-left:1px solid #cfd6e2;padding-left:9px;line-height:1.3}
+.cst-nav{display:flex;align-items:center;gap:28px}
+.cst-nav a{font-size:14px;font-weight:700;color:#2a3a5c;text-decoration:none}
+.cst-nav a:hover{color:var(--blue)}
+.cst-toprod{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--navy);color:var(--navy);font-weight:700;font-size:13px;padding:9px 16px;border-radius:8px;text-decoration:none;white-space:nowrap}
+.cst-toprod:hover{background:var(--navy);color:#fff}
+@media (max-width:960px){.cst-nav{display:none}}
+
+/* hero */
+.cst-hero{position:relative;min-height:clamp(560px,92vh,940px);overflow:hidden;background:#0e1c34;display:flex;align-items:flex-end}
+.cst-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.cst-hero-scrim1{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,18,38,.84) 0%,rgba(8,18,38,.58) 40%,rgba(8,18,38,.14) 70%,rgba(8,18,38,0) 100%)}
+.cst-hero-scrim2{position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,18,38,.82) 0%,rgba(8,18,38,.12) 36%,rgba(8,18,38,0) 60%)}
+.cst-hero-in{position:relative;width:100%;max-width:1240px;margin:0 auto;padding:clamp(40px,8vw,96px) clamp(20px,4vw,52px) clamp(40px,6vw,72px)}
+.cst-hero-box{max-width:700px}
+.cst-hero-eyebrow{display:inline-block;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.22em;color:var(--blue-ll);margin-bottom:18px}
+.cst-h1{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:clamp(36px,6vw,72px);line-height:1.18;letter-spacing:.01em;color:#fff;margin:0 0 24px;text-shadow:0 4px 24px rgba(0,0,0,.35)}
+.cst-h1 span{color:var(--blue-l)}
+.cst-hero-lead{font-size:clamp(14.5px,1.6vw,16.5px);line-height:1.95;color:#e6edf8;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.cst-hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.cst-hero-tags li{font-size:12.5px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:5px 14px;background:rgba(255,255,255,.08)}
+
+/* results */
+.cst-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cst-stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 14px 24px;text-align:center;box-shadow:0 4px 12px rgba(22,41,78,.06)}
+.cst-stat-label{font-size:13px;font-weight:700;color:var(--muted);line-height:1.5}
+.cst-stat-num{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(40px,5.4vw,60px);line-height:1.1;color:var(--navy);margin-top:10px;letter-spacing:-.01em}
+.cst-stat-num small{font-family:'Zen Kaku Gothic New',sans-serif;font-size:.36em;font-weight:900;color:var(--blue);margin-left:3px;letter-spacing:0}
+.cst-stat-num .cst-pre{font-family:'Zen Kaku Gothic New',sans-serif;font-size:.32em;font-weight:900;color:var(--blue);margin-right:3px;letter-spacing:0}
+.cst-area{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;background:linear-gradient(150deg,#244680,var(--navy));color:#fff;border-radius:14px;padding:20px 22px}
+.cst-area-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;letter-spacing:.24em;color:var(--blue-l)}
+.cst-area-body{font-weight:700;font-size:15px}
+.cst-area-chips{display:flex;flex-wrap:wrap;gap:6px}
+.cst-area-chips li{font-size:12.5px;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 12px}
+.cst-area-chips li:first-child{background:#fff;color:var(--navy);border-color:#fff}
+@media (max-width:820px){.cst-stats{grid-template-columns:repeat(2,1fr)}}
+
+/* purpose */
+.cst-purpose{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.cst-purpose-photo{border-radius:14px;overflow:hidden;box-shadow:0 18px 40px rgba(22,41,78,.16);aspect-ratio:4/3}
+.cst-purpose-photo img{width:100%;height:100%;object-fit:cover}
+.cst-purpose .cst-eyebrow{margin-bottom:12px}
+.cst-purpose .cst-h2{font-size:clamp(25px,3.4vw,36px)}
+.cst-purpose p{margin-top:18px}
+.cst-mission{margin-top:28px;border-left:4px solid var(--blue);background:#fff;border-radius:0 12px 12px 0;padding:16px 20px}
+.cst-mission-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.26em;color:var(--blue)}
+.cst-mission-title{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:24px;color:var(--navy);line-height:1.4;margin-top:2px}
+.cst-mission-body{font-size:14px;color:var(--muted);margin-top:2px}
+@media (max-width:820px){.cst-purpose{grid-template-columns:1fr}}
+
+/* features */
+.cst-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cst-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 4px 12px rgba(22,41,78,.06);display:flex;flex-direction:column}
+.cst-card-photo{aspect-ratio:4/3;background:#aebcd6}
+.cst-card-photo img{width:100%;height:100%;object-fit:cover}
+.cst-card-body{padding:22px 22px 26px;position:relative}
+.cst-card-no{font-family:'Montserrat',sans-serif;font-weight:800;font-size:40px;line-height:1;color:var(--blue);opacity:.9}
+.cst-card-title{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:22px;color:var(--navy);margin:8px 0 8px}
+.cst-card-text{font-size:14.5px;color:var(--muted)}
+.cst-diff{margin-top:30px;text-align:center;font-weight:700;color:var(--navy);font-size:15px}
+.cst-diff span{display:inline-block;background:var(--pale);border-radius:999px;padding:8px 20px}
+@media (max-width:820px){.cst-cards{grid-template-columns:1fr}}
+
+/* flow */
+.cst-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;position:relative}
+.cst-step{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(22,41,78,.06);display:flex;flex-direction:column}
+.cst-step-photo{aspect-ratio:1/1;background:linear-gradient(150deg,#244680,var(--navy));display:flex;align-items:center;justify-content:center}
+.cst-step-photo img{width:100%;height:100%;object-fit:cover}
+.cst-step-icon{font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:13px;letter-spacing:.2em;text-align:center;line-height:1.6}
+.cst-step-icon b{display:block;font-size:30px;letter-spacing:0}
+.cst-step-body{padding:14px 14px 18px}
+.cst-step-when{display:inline-block;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.08em;color:#fff;background:var(--blue);border-radius:6px;padding:2px 9px}
+.cst-step-when.is-sub{background:var(--navy)}
+.cst-step-title{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:17px;color:var(--navy);line-height:1.45;margin:10px 0 6px}
+.cst-step-text{font-size:13px;line-height:1.75;color:var(--muted)}
+.cst-flow-band{display:flex;justify-content:space-between;gap:14px;margin-top:16px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.2em;color:var(--blue)}
+.cst-flow-band span{flex:1;text-align:center;border-top:2px solid var(--blue);padding-top:8px}
+.cst-flow-band span:first-child,.cst-flow-band span:last-child{flex:1;color:var(--navy);border-color:var(--navy)}
+.cst-flow-band span:nth-child(2){flex:4}
+@media (max-width:1080px){.cst-flow{grid-template-columns:repeat(3,1fr)}.cst-flow-band{display:none}}
+@media (max-width:560px){.cst-flow{grid-template-columns:1fr}.cst-step{flex-direction:row}.cst-step-photo{width:112px;flex:none;aspect-ratio:auto}}
+
+/* case */
+.cst-case{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,60px);align-items:center}
+.cst-case-title{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:clamp(21px,2.6vw,26px);color:#fff;line-height:1.5}
+.cst-case-meta{font-size:13px;color:var(--blue-l);font-weight:700;margin-top:6px}
+.cst-case-text{margin-top:18px;color:#d0dbee}
+.cst-case-quote{margin-top:20px;border-left:3px solid var(--blue-l);padding:4px 0 4px 16px;color:#fff;font-weight:700}
+.cst-bars{display:grid;gap:14px}
+.cst-barrow{display:grid;grid-template-columns:96px 1fr 84px;align-items:center;gap:14px}
+.cst-barrow-day{font-weight:700;font-size:13px;color:#c3d0e6;line-height:1.4}
+.cst-barrow-track{height:18px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
+.cst-barrow-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#7fa8f5,var(--blue-l));transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.cst-barrow-num{font-family:'Montserrat',sans-serif;font-weight:800;font-size:34px;color:#fff;line-height:1;text-align:right}
+.cst-barrow-num small{font-family:'Zen Kaku Gothic New',sans-serif;font-size:.42em;margin-left:2px;color:var(--blue-l)}
+.cst-bars-cap{font-size:12.5px;color:#9fb0cd;margin-top:6px;text-align:right}
+@media (max-width:820px){.cst-case{grid-template-columns:1fr}.cst-barrow{grid-template-columns:78px 1fr 70px}.cst-barrow-num{font-size:28px}}
+
+/* voices (placeholders) */
+.cst-voices{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cst-voice{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 4px 12px rgba(22,41,78,.06)}
+.cst-voice-photo{aspect-ratio:4/3;background:#eef2f8;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.cst-voice-photo img{width:100%;height:100%;object-fit:cover}
+.cst-voice-photo.is-empty{background:repeating-linear-gradient(135deg,#eef2f8 0 12px,#e6ecf5 12px 24px)}
+.cst-voice-photo.is-empty span{font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;letter-spacing:.24em;color:#8a97ad}
+.cst-voice-body{padding:20px 22px 24px}
+.cst-voice-meta{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;font-weight:700}
+.cst-voice-meta span{background:var(--pale);color:var(--navy);border-radius:6px;padding:2px 9px}
+.cst-voice-title{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:18px;color:var(--navy);line-height:1.5;margin:12px 0 8px}
+.cst-voice-text{font-size:14px;color:var(--muted)}
+.cst-voice-name{margin-top:12px;font-size:13px;font-weight:700;color:var(--navy)}
+.cst-voice.is-empty .cst-voice-title,.cst-voice.is-empty .cst-voice-text,.cst-voice.is-empty .cst-voice-name{color:#9aa5b8}
+@media (max-width:900px){.cst-voices{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+
+/* history */
+.cst-tl{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 18px;-webkit-overflow-scrolling:touch;scrollbar-color:#7fa8f5 transparent}
+.cst-tl-item{flex:0 0 clamp(220px,26vw,280px);scroll-snap-align:start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;overflow:hidden}
+.cst-tl-photo{aspect-ratio:4/3;background:#23365c}
+.cst-tl-photo img{width:100%;height:100%;object-fit:cover}
+.cst-tl-body{padding:12px 16px 16px;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.cst-tl-no{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:17px;color:#fff}
+.cst-tl-date{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;color:var(--blue-l);letter-spacing:.06em}
+.cst-tl-item.is-next{background:linear-gradient(150deg,var(--blue),var(--blue-d));border-color:transparent;display:flex;flex-direction:column;justify-content:center;padding:26px 22px;color:#fff}
+.cst-tl-next-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:.3em;color:#dbe6ff}
+.cst-tl-next-date{font-family:'Montserrat',sans-serif;font-weight:800;font-size:30px;line-height:1.25;margin-top:8px}
+.cst-tl-next-text{font-size:13.5px;margin-top:10px;color:#e3ebff}
+.cst-tl-hint{font-size:12px;color:#9fb0cd;text-align:right;font-family:'Montserrat',sans-serif;letter-spacing:.14em;font-weight:700}
+
+/* safety */
+.cst-safety{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,56px);align-items:center}
+.cst-safety-photo{border-radius:14px;overflow:hidden;aspect-ratio:16/10;box-shadow:0 18px 40px rgba(22,41,78,.14)}
+.cst-safety-photo img{width:100%;height:100%;object-fit:cover}
+.cst-safety-list{display:grid;gap:12px}
+.cst-safety-list li{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.cst-safety-no{font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#fff;background:var(--blue);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center}
+.cst-safety-title{font-weight:700;color:var(--navy);font-size:15px;line-height:1.55}
+.cst-safety-text{font-size:13.5px;color:var(--muted);line-height:1.75;margin-top:2px}
+.cst-operator{margin-top:30px;background:#fff;border:1px solid #cfd8e8;border-radius:12px;padding:18px 22px;font-size:13.5px;color:var(--text)}
+.cst-operator b{color:var(--navy)}
+@media (max-width:820px){.cst-safety{grid-template-columns:1fr}}
+
+/* message */
+.cst-msg{display:grid;grid-template-columns:260px 1fr;gap:clamp(28px,5vw,60px);align-items:start}
+.cst-msg-photo{border-radius:14px;overflow:hidden;aspect-ratio:1/1;box-shadow:0 14px 34px rgba(22,41,78,.14)}
+.cst-msg-photo img{width:100%;height:100%;object-fit:cover}
+.cst-msg-name{margin-top:16px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:22px;color:var(--navy)}
+.cst-msg-role{font-size:12.5px;color:var(--muted);line-height:1.7;margin-top:4px}
+.cst-msg .cst-h2{font-size:clamp(24px,3.2vw,34px)}
+.cst-msg-body p{margin-top:16px}
+@media (max-width:820px){.cst-msg{grid-template-columns:1fr}.cst-msg-side{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center}.cst-msg-name{margin-top:0}}
+
+/* from prod */
+.cst-prod{text-align:center}
+.cst-prod-body{margin-top:24px;color:#d0dbee;font-size:clamp(14.5px,1.6vw,16px);line-height:2}
+.cst-prod-concept{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 10px;margin:28px 0 6px}
+.cst-prod-concept span{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;color:#fff;font-size:15px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:6px 16px}
+.cst-prod-concept i{font-style:normal;color:var(--blue-l);font-weight:700}
+.cst-prod-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;margin-top:34px}
+.cst-textlink{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:700;font-size:14.5px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:3px}
+.cst-textlink:hover{color:var(--blue-l);border-color:var(--blue-l)}
+
+/* footer */
+.cst-footer{background:#fff;border-top:1px solid #e6ebf3;padding:clamp(36px,5vw,52px) clamp(16px,3vw,34px) 26px}
+.cst-footer-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;padding-bottom:24px;border-bottom:1px solid #eef1f6}
+.cst-footer-nav{display:flex;flex-wrap:wrap;gap:12px 22px}
+.cst-footer-nav a{font-size:13px;font-weight:700;color:#2a3a5c;text-decoration:none}
+.cst-footer-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 30px;padding-top:22px;font-size:12.5px;line-height:1.9;color:var(--muted)}
+.cst-footer-info b{display:block;color:var(--navy);margin-bottom:4px}
+.cst-footer-info a{color:#2a3a5c;font-weight:700;text-decoration:none}
+.cst-footer-info a.is-blue{color:var(--blue)}
+.cst-copy{margin-top:22px;padding-top:18px;border-top:1px solid #eef1f6;font-size:11.5px;color:#8a94a6;text-align:center}
+
+/* reveal（JSが動いたときだけ隠す。JSなしでも全文が見える） */
+.cst-lp.cst-js .cst-rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.cst-lp.cst-js .cst-rv.is-in{opacity:1;transform:none}
+.cst-lp.cst-js .cst-bars:not(.is-in) .cst-barrow-fill{transform:scaleX(0)}
+@media (prefers-reduced-motion:reduce){.cst-lp.cst-js .cst-rv{opacity:1;transform:none;transition:none}.cst-lp.cst-js .cst-bars .cst-barrow-fill{transform:none;transition:none}}
+.cst-lp :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+.cst-lp [id]{scroll-margin-top:72px}
+</style>
+
+<div class="cst-lp" id="cst-lp">
+
+  <!-- ============ HEADER ============ -->
+  <header class="cst-header">
+    <div class="cst-header-in">
+      <a class="cst-logo" href="https://prod-fukuoka.jp/" aria-label="株式会社PROD トップへ">
+        <span class="cst-logo-en">PROD</span>
+        <span class="cst-logo-ja">株式会社<br>PROD</span>
+      </a>
+      <nav class="cst-nav" aria-label="ページ内メニュー">
+        <a href="#cst-about">概要</a>
+        <a href="#cst-results">実績</a>
+        <a href="#cst-program">プログラム</a>
+        <a href="#cst-case">事例</a>
+        <a href="#cst-history">歩み</a>
+        <a href="#cst-message">代表</a>
+      </nav>
+      <a class="cst-toprod" href="https://prod-fukuoka.jp/">PRODトップへ <span aria-hidden="true">→</span></a>
+    </div>
+  </header>
+
+  <main>
+  <!-- ============ 1. HERO ============ -->
+  <section class="cst-hero" id="cst-top">
+    <img class="cst-hero-img" src="images/hero-beach-group.jpg" alt="セブ島の砂浜に集まった参加者たちの集合写真" fetchpriority="high">
+    <div class="cst-hero-scrim1"></div>
+    <div class="cst-hero-scrim2"></div>
+    <div class="cst-hero-in">
+      <div class="cst-hero-box cst-rv">
+        <span class="cst-hero-eyebrow">CEBU STUDY TOUR</span>
+        <h1 class="cst-h1">知らない環境で、<br>自分で決めて<br><span>動く8日間。</span></h1>
+        <p class="cst-hero-lead">セブ島スタディツアーは、PRODの社員・森山裕太が代表を務め、2023年から続けている学生向けの海外研修プログラムです。フィリピン・セブ島を舞台に、参加者が自ら企画を立て、現地で実践し、仲間と振り返る。観光でも語学留学でもない、経験から学ぶ8日間をつくっています。</p>
+        <ul class="cst-hero-tags">
+          <li>フィリピン・セブ島</li>
+          <li>8日間</li>
+          <li>2023年〜 累計10回開催</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. RESULTS ============ -->
+  <section class="cst-sec" id="cst-results">
+    <div class="cst-wrap">
+      <div class="cst-head cst-rv">
+        <span class="cst-eyebrow">RESULTS</span>
+        <h2 class="cst-h2">10回の開催、<br><em>170名以上</em>の参加者。</h2>
+        <p class="cst-lead">参加者の多くは、初めての海外に一人で飛び込んだ学生です。</p>
+      </div>
+      <div class="cst-stats">
+        <div class="cst-stat cst-rv">
+          <p class="cst-stat-label">累計参加者</p>
+          <p class="cst-stat-num">170<small>名以上</small></p>
+        </div>
+        <div class="cst-stat cst-rv">
+          <p class="cst-stat-label">開催回数</p>
+          <p class="cst-stat-num">10<small>回</small></p>
+        </div>
+        <div class="cst-stat cst-rv">
+          <p class="cst-stat-label">海外渡航が<br>初めての参加者</p>
+          <p class="cst-stat-num"><span class="cst-pre">約</span>80<small>%</small></p>
+        </div>
+        <div class="cst-stat cst-rv">
+          <p class="cst-stat-label">一人で<br>参加した人</p>
+          <p class="cst-stat-num"><span class="cst-pre">約</span>70<small>%</small></p>
+        </div>
+      </div>
+      <div class="cst-area cst-rv">
+        <span class="cst-area-label">AREA</span>
+        <span class="cst-area-body">福岡を中心に、全国から参加</span>
+        <ul class="cst-area-chips">
+          <li>福岡</li><li>長崎</li><li>熊本</li><li>関西</li><li>関東</li><li>北海道</li>
+        </ul>
+      </div>
+      <p class="cst-note" style="text-align:center">※2026年9月時点の累計実績</p>
+    </div>
+  </section>
+
+  <!-- ============ 3. PURPOSE ============ -->
+  <section class="cst-sec cst-bg-pale" id="cst-about">
+    <div class="cst-wrap cst-purpose">
+      <figure class="cst-purpose-photo cst-rv">
+        <img src="images/purpose-street.jpg" alt="路上で現地の子どもたちと触れ合う参加者" loading="lazy">
+      </figure>
+      <div class="cst-rv">
+        <span class="cst-eyebrow">ABOUT</span>
+        <h2 class="cst-h2">きっかけがあれば、<br><em>人は動き出せる。</em></h2>
+        <p>「やってみたい気持ちはあるけれど、何をしたいのか分からない」「始める前から、自分には難しいと思ってしまう」。</p>
+        <p>そんな学生に必要なのは、正解を教わることではなく、自分で決めて動いてみる経験だと考えています。言葉も文化も違い、思いどおりにいかない環境だからこそ、仲間に相談し、方法を変え、もう一度試す。その繰り返しから、自分なりの動き方が見えてきます。</p>
+        <div class="cst-mission">
+          <p class="cst-mission-label">MISSION</p>
+          <p class="cst-mission-title">未知を超える</p>
+          <p class="cst-mission-body">知らない環境へ一歩踏み出し、自分なりの答えをつくる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. FEATURES ============ -->
+  <section class="cst-sec">
+    <div class="cst-wrap">
+      <div class="cst-head cst-rv">
+        <span class="cst-eyebrow">FEATURES</span>
+        <h2 class="cst-h2">遊ぶだけで終わらない、<br><em>経験から学ぶ</em>設計。</h2>
+        <span class="cst-bar"></span>
+      </div>
+      <div class="cst-cards">
+        <article class="cst-card cst-rv">
+          <div class="cst-card-photo"><img src="images/feature-think.jpg" alt="紙にやりたいことを書き出し、仲間に見せる参加者たち" loading="lazy"></div>
+          <div class="cst-card-body">
+            <p class="cst-card-no">01</p>
+            <h3 class="cst-card-title">考える</h3>
+            <p class="cst-card-text">自分がセブで試したいことを、自分なりに企画する。最初から明確な目標がなくても、事前研修や運営との対話を通して少しずつ形にしていきます。</p>
+          </div>
+        </article>
+        <article class="cst-card cst-rv">
+          <div class="cst-card-photo"><img src="images/feature-try.jpg" alt="手作りの看板を掲げ、日本の団子を現地の女性に売る参加者" loading="lazy"></div>
+          <div class="cst-card-body">
+            <p class="cst-card-no">02</p>
+            <h3 class="cst-card-title">試す</h3>
+            <p class="cst-card-text">正解のない街へ出て、考えたことを実際の行動にする。うまくいかなければ、場所や伝え方を変えて、もう一度街へ出ます。</p>
+          </div>
+        </article>
+        <article class="cst-card cst-rv">
+          <div class="cst-card-photo"><img src="images/feature-reflect.jpg" alt="夜、ノートとパソコンを囲んで一日を振り返る参加者たち" loading="lazy"></div>
+          <div class="cst-card-body">
+            <p class="cst-card-no">03</p>
+            <h3 class="cst-card-title">振り返る</h3>
+            <p class="cst-card-text">昼に動き、夜に経験を言葉にする。毎晩、仲間や運営との対話を通して、その日の経験を翌日の一歩へつなげます。</p>
+          </div>
+        </article>
+      </div>
+      <p class="cst-diff cst-rv"><span>観光でも、語学留学でもない。自分で決めて動く海外研修です。</span></p>
+    </div>
+  </section>
+
+  <!-- ============ 5. FLOW ============ -->
+  <section class="cst-sec cst-bg-pale" id="cst-program">
+    <div class="cst-wrap">
+      <div class="cst-head cst-rv">
+        <span class="cst-eyebrow">PROGRAM</span>
+        <h2 class="cst-h2">8日間の前後まで、<br><em>一つの学び</em>として設計。</h2>
+        <span class="cst-bar"></span>
+      </div>
+      <ol class="cst-flow">
+        <li class="cst-step cst-rv">
+          <div class="cst-step-photo"><p class="cst-step-icon">BEFORE<b>4h</b></p></div>
+          <div class="cst-step-body">
+            <span class="cst-step-when is-sub">出発前</span>
+            <h3 class="cst-step-title">事前研修</h3>
+            <p class="cst-step-text">4時間の事前研修で顔合わせ。セブで試したいことを、日本にいる間に整理します。</p>
+          </div>
+        </li>
+        <li class="cst-step cst-rv">
+          <div class="cst-step-photo"><img src="images/flow-day1-2.jpg" alt="セブの海の上で仲間と笑い合う参加者たち" loading="lazy"></div>
+          <div class="cst-step-body">
+            <span class="cst-step-when">DAY 1–2</span>
+            <h3 class="cst-step-title">セブを知り、仲間になる</h3>
+            <p class="cst-step-text">アイランドホッピングで海と街に触れ、初対面の参加者が仲間になっていきます。</p>
+          </div>
+        </li>
+        <li class="cst-step cst-rv">
+          <div class="cst-step-photo"><img src="images/flow-day3-5.jpg" alt="路上のアクセサリー修理店で店主と話す参加者" loading="lazy"></div>
+          <div class="cst-step-body">
+            <span class="cst-step-when">DAY 3–5</span>
+            <h3 class="cst-step-title">個人企画</h3>
+            <p class="cst-step-text">自分で決めたことを、3日間かけてセブの街で実際に試します。</p>
+          </div>
+        </li>
+        <li class="cst-step cst-rv">
+          <div class="cst-step-photo"><img src="images/flow-day6.jpg" alt="日中、ジプニーに乗り込みながら周囲の人と関わる参加者" loading="lazy"></div>
+          <div class="cst-step-body">
+            <span class="cst-step-when">DAY 6</span>
+            <h3 class="cst-step-title">常夏研修</h3>
+            <p class="cst-step-text">セブの街をフィールドに、新たな自分と出会う没入型の体験をします。</p>
+          </div>
+        </li>
+        <li class="cst-step cst-rv">
+          <div class="cst-step-photo"><img src="images/flow-day7-8.jpg" alt="夜の屋台祭りで仲間と食卓を囲む参加者たち" loading="lazy"></div>
+          <div class="cst-step-body">
+            <span class="cst-step-when">DAY 7–8</span>
+            <h3 class="cst-step-title">グループ企画</h3>
+            <p class="cst-step-text">個人企画の経験を持ち寄り、仲間と役割を分けて一つの企画を形にします。</p>
+          </div>
+        </li>
+        <li class="cst-step cst-rv">
+          <div class="cst-step-photo"><img src="images/flow-report.jpg" alt="帰国報告会でスライドを使って体験を話す参加者と、それを聞く来場者たち" loading="lazy"></div>
+          <div class="cst-step-body">
+            <span class="cst-step-when is-sub">帰国後</span>
+            <h3 class="cst-step-title">帰国報告会</h3>
+            <p class="cst-step-text">うまくいったことも迷ったことも含めて、8日間を自分の言葉で発表します。</p>
+          </div>
+        </li>
+      </ol>
+      <div class="cst-flow-band" aria-hidden="true"><span>BEFORE</span><span>8 DAYS IN CEBU</span><span>AFTER</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 6. CASE ============ -->
+  <section class="cst-sec cst-bg-navy" id="cst-case">
+    <div class="cst-wrap">
+      <div class="cst-head cst-rv">
+        <span class="cst-eyebrow">CASE STUDY</span>
+        <h2 class="cst-h2">初日は2人。<br><em>3日目には100人。</em></h2>
+      </div>
+      <div class="cst-case">
+        <div class="cst-rv">
+          <h3 class="cst-case-title">個人企画「フィリピン人100人に夢を聞く」</h3>
+          <p class="cst-case-meta">西南学院大学 3年</p>
+          <p class="cst-case-text">セブの街で100人に声をかけ、それぞれの夢を聞く。初日に話を聞けたのは2人でした。声のかけ方や場所を変えながら試し、2日目には60人、3日目には100人へのインタビューを終えました。</p>
+          <blockquote class="cst-case-quote">「途中で方法を変えながら続けられたことが、自分にとって大きな経験になりました」</blockquote>
+        </div>
+        <div class="cst-bars cst-rv" role="img" aria-label="インタビューした人数：個人企画1日目 2人、2日目 60人、3日目 100人">
+          <div class="cst-barrow"><span class="cst-barrow-day">個人企画<br>1日目</span><span class="cst-barrow-track"><span class="cst-barrow-fill" style="display:block;width:2%"></span></span><span class="cst-barrow-num">2<small>人</small></span></div>
+          <div class="cst-barrow"><span class="cst-barrow-day">個人企画<br>2日目</span><span class="cst-barrow-track"><span class="cst-barrow-fill" style="display:block;width:60%"></span></span><span class="cst-barrow-num">60<small>人</small></span></div>
+          <div class="cst-barrow"><span class="cst-barrow-day">個人企画<br>3日目</span><span class="cst-barrow-track"><span class="cst-barrow-fill" style="display:block;width:100%"></span></span><span class="cst-barrow-num">100<small>人</small></span></div>
+          <p class="cst-bars-cap">インタビューできた人数（累計）</p>
+        </div>
+      </div>
+      <p class="cst-note cst-rv" style="text-align:center;margin-top:36px">すべての企画が、目標どおりに終わるわけではありません。結果だけでなく、途中で何を考え、どう動きを変えたかを振り返ります。</p>
+    </div>
+  </section>
+
+  <!-- ============ 7. VOICES（社内メンバーの原稿待ち・枠のみ） ============
+       差し替え方:
+       1. .cst-voice から is-empty を外す
+       2. .cst-voice-photo の is-empty を外し、中の <span> を 画像（例: images/voice-01.jpg）の img タグ に替える
+       3. [ ] の項目を本文に置き換える（見出し1行・本文2〜3行が目安）
+  -->
+  <section class="cst-sec" id="cst-voices">
+    <div class="cst-wrap">
+      <div class="cst-head cst-rv">
+        <span class="cst-eyebrow">VOICES</span>
+        <h2 class="cst-h2">8日間のあとに、<br><em>次の一歩</em>が続いていく。</h2>
+        <span class="cst-bar"></span>
+      </div>
+      <div class="cst-voices">
+        <article class="cst-voice is-empty cst-rv">
+          <div class="cst-voice-photo is-empty"><span>PHOTO</span></div>
+          <div class="cst-voice-body">
+            <p class="cst-voice-meta"><span>[第◯回・20XX年◯月 参加]</span><span>[現在の所属・役割]</span></p>
+            <h3 class="cst-voice-title">[見出し：参加前の自分や、印象に残った場面を1行で]</h3>
+            <p class="cst-voice-text">[本文：セブで何に挑戦し、どう動きを変えたか。帰国後に続いている一歩。2〜3行]</p>
+            <p class="cst-voice-name">[名前]</p>
+          </div>
+        </article>
+        <article class="cst-voice is-empty cst-rv">
+          <div class="cst-voice-photo is-empty"><span>PHOTO</span></div>
+          <div class="cst-voice-body">
+            <p class="cst-voice-meta"><span>[第◯回・20XX年◯月 参加]</span><span>[現在の所属・役割]</span></p>
+            <h3 class="cst-voice-title">[見出し：参加前の自分や、印象に残った場面を1行で]</h3>
+            <p class="cst-voice-text">[本文：セブで何に挑戦し、どう動きを変えたか。帰国後に続いている一歩。2〜3行]</p>
+            <p class="cst-voice-name">[名前]</p>
+          </div>
+        </article>
+        <article class="cst-voice is-empty cst-rv">
+          <div class="cst-voice-photo is-empty"><span>PHOTO</span></div>
+          <div class="cst-voice-body">
+            <p class="cst-voice-meta"><span>[第◯回・20XX年◯月 参加]</span><span>[現在の所属・役割]</span></p>
+            <h3 class="cst-voice-title">[見出し：参加前の自分や、印象に残った場面を1行で]</h3>
+            <p class="cst-voice-text">[本文：セブで何に挑戦し、どう動きを変えたか。帰国後に続いている一歩。2〜3行]</p>
+            <p class="cst-voice-name">[名前]</p>
+          </div>
+        </article>
+      </div>
+      <p class="cst-note cst-rv" style="text-align:center">掲載内容は本人の体験に基づきます。感じ方や変化には個人差があります。</p>
+    </div>
+  </section>
+
+  <!-- ============ 8. HISTORY ============ -->
+  <section class="cst-sec cst-bg-navy" id="cst-history">
+    <div class="cst-wrap">
+      <div class="cst-head cst-rv">
+        <span class="cst-eyebrow">HISTORY</span>
+        <h2 class="cst-h2">2023年から、<br><em>半年ごとに。</em></h2>
+        <p class="cst-lead">5人で始まったツアーは、10回の開催を重ねてきました。</p>
+      </div>
+      <ol class="cst-tl cst-rv" aria-label="開催の歩み" tabindex="0">
+        <li class="cst-tl-item"><div class="cst-tl-photo"><img src="images/timeline-01.jpg" alt="第1回：ビーチで写る参加者5人の集合写真" loading="lazy"></div><div class="cst-tl-body"><span class="cst-tl-no">第1回</span><span class="cst-tl-date">2023.09</span></div></li>
+        <li class="cst-tl-item"><div class="cst-tl-photo"><img src="images/timeline-02.jpg" alt="第2回：宿泊先の室内で撮った参加者たちの集合写真" loading="lazy"></div><div class="cst-tl-body"><span class="cst-tl-no">第2回</span><span class="cst-tl-date">2024.02</span></div></li>
+        <li class="cst-tl-item"><div class="cst-tl-photo"><img src="images/timeline-03.jpg" alt="第3回：「I LOVE CAOHAGAN」の看板前での集合写真" loading="lazy"></div><div class="cst-tl-body"><span class="cst-tl-no">第3回</span><span class="cst-tl-date">2024.09</span></div></li>
+        <li class="cst-tl-item"><div class="cst-tl-photo"><img src="images/timeline-04.jpg" alt="第4回：ビーチで撮った参加者たちの集合写真" loading="lazy"></div><div class="cst-tl-body"><span class="cst-tl-no">第4回</span><span class="cst-tl-date">2025.02</span></div></li>
+        <li class="cst-tl-item"><div class="cst-tl-photo"><img src="images/timeline-05.jpg" alt="第5回：宿泊先の室内で撮った参加者たちの集合写真" loading="lazy"></div><div class="cst-tl-body"><span class="cst-tl-no">第5回</span><span class="cst-tl-date">2025.03</span></div></li>
+        <li class="cst-tl-item"><div class="cst-tl-photo"><img src="images/timeline-06.jpg" alt="第6回：宿泊先の室内で紙コップを手に撮った集合写真" loading="lazy"></div><div class="cst-tl-body"><span class="cst-tl-no">第6回</span><span class="cst-tl-date">2025.09</span></div></li>
+        <li class="cst-tl-item"><div class="cst-tl-photo"><img src="images/timeline-07.jpg" alt="第7回：「I LOVE CAOHAGAN」の看板前での集合写真" loading="lazy"></div><div class="cst-tl-body"><span class="cst-tl-no">第7回</span><span class="cst-tl-date">2026.02</span></div></li>
+        <li class="cst-tl-item"><div class="cst-tl-photo"><img src="images/timeline-08.jpg" alt="第8回：屋根付きの船上で撮った集合写真" loading="lazy"></div><div class="cst-tl-body"><span class="cst-tl-no">第8回</span><span class="cst-tl-date">2026.03</span></div></li>
+        <li class="cst-tl-item"><div class="cst-tl-photo"><img src="images/timeline-09.jpg" alt="第9回：宿泊先の室内でソファを囲んで撮った集合写真" loading="lazy"></div><div class="cst-tl-body"><span class="cst-tl-no">第9回</span><span class="cst-tl-date">2026.09</span></div></li>
+        <li class="cst-tl-item"><div class="cst-tl-photo"><img src="images/timeline-10.jpg" alt="第10回：手書きのボードやTシャツを手に撮った集合写真" loading="lazy"></div><div class="cst-tl-body"><span class="cst-tl-no">第10回</span><span class="cst-tl-date">2026.09</span></div></li>
+        <li class="cst-tl-item is-next">
+          <span class="cst-tl-next-label">NEXT</span>
+          <span class="cst-tl-next-date">2027.02<br>2027.03</span>
+          <span class="cst-tl-next-text">2027年2月・3月に開催予定です。</span>
+        </li>
+      </ol>
+      <p class="cst-tl-hint" aria-hidden="true">SCROLL →</p>
+    </div>
+  </section>
+
+  <!-- ============ 9. SAFETY ============ -->
+  <section class="cst-sec cst-bg-pale" id="cst-safety">
+    <div class="cst-wrap">
+      <div class="cst-head cst-rv">
+        <span class="cst-eyebrow">SAFETY</span>
+        <h2 class="cst-h2">挑戦の場だからこそ、<br><em>安全の仕組み</em>を。</h2>
+        <span class="cst-bar"></span>
+      </div>
+      <div class="cst-safety">
+        <figure class="cst-safety-photo cst-rv">
+          <img src="images/safety-tamariba.jpg" alt="TAMARIBAのリビングでくつろぐ参加者たち" loading="lazy">
+        </figure>
+        <ul class="cst-safety-list cst-rv">
+          <li><span class="cst-safety-no">01</span><div><p class="cst-safety-title">運営メンバーが全日程に同行</p><p class="cst-safety-text">渡航中は、困ったときや判断に迷ったときに、いつでも相談できます。</p></div></li>
+          <li><span class="cst-safety-no">02</span><div><p class="cst-safety-title">現地拠点「TAMARIBA」と現地サポーター</p><p class="cst-safety-text">参加者と運営が共同生活をする宿泊拠点。現地の行動エリアや安全情報を知るサポーターがいます。</p></div></li>
+          <li><span class="cst-safety-no">03</span><div><p class="cst-safety-title">19時以降の単独外出は禁止</p><p class="cst-safety-text">夜の外出には、運営の許可と同行が必要です。</p></div></li>
+          <li><span class="cst-safety-no">04</span><div><p class="cst-safety-title">緊急時の責任者を明確に</p><p class="cst-safety-text">渡航期間中、緊急時の連絡と対応の最終責任は、代表の森山が担います。</p></div></li>
+        </ul>
+      </div>
+      <p class="cst-operator cst-rv"><b>運営について：</b>本プログラムは、セブ島スタディツアー運営チーム（代表：森山裕太）が企画・運営しています。株式会社PRODおよび大学の主催ではありません。</p>
+    </div>
+  </section>
+
+  <!-- ============ 10. MESSAGE ============ -->
+  <section class="cst-sec" id="cst-message">
+    <div class="cst-wrap cst-narrow cst-msg">
+      <div class="cst-msg-side cst-rv">
+        <figure class="cst-msg-photo"><img src="images/representative.jpg" alt="セブ島スタディツアー代表 森山裕太" loading="lazy"></figure>
+        <div>
+          <p class="cst-msg-name">森山 裕太</p>
+          <p class="cst-msg-role">セブ島スタディツアー 代表<br>株式会社PROD 学生／人材事業部 責任者</p>
+        </div>
+      </div>
+      <div class="cst-msg-body cst-rv">
+        <span class="cst-eyebrow">MESSAGE</span>
+        <h2 class="cst-h2">不安だらけの出発が、<br><em>すべての原点</em>になった。</h2>
+        <p>僕も、最初は参加者でした。初めての海外へ出発する直前、現地を案内するはずだった先輩が来られなくなり、英語もほとんど話せないまま、年下の4人を連れてセブへ向かいました。</p>
+        <p>現地では、それぞれが自分で決めた企画に挑戦しました。うまくいかなければ仲間に相談し、方法を変えて、もう一度動く。参加者が少しずつ表情や言葉を変えていく姿を、そばで見ていました。</p>
+        <p>8日間ですべてが変わるわけではありません。それでも、自分で選び、動いた経験は、帰国後の一歩を少し変えることがあります。あの日見た「自分から動き出す瞬間」を、これからも参加者と一緒につくっていきます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11. FROM PROD ============ -->
+  <section class="cst-sec cst-bg-navy" id="cst-prod">
+    <div class="cst-wrap cst-narrow cst-prod cst-rv">
+      <span class="cst-eyebrow">FROM PROD</span>
+      <h2 class="cst-h2">社員の挑戦を、<br><em>PRODは応援しています。</em></h2>
+      <p class="cst-prod-body">PRODは「人の可能性を解放する」をミッションに、若者の挑戦と企業の成長を支えています。<br>社員の森山が続けてきたセブ島スタディツアーは、知らない環境で自ら考え、試し、視野を広げていく場です。私たちが大切にする考え方を、海外という環境で体現する取り組みとして、PRODはこの挑戦を応援しています。</p>
+      <p class="cst-prod-concept" aria-label="PRODのコンセプト：思考、実践、視野拡張、再成長"><span>思考</span><i>→</i><span>実践</span><i>→</i><span>視野拡張</span><i>→</i><span>再成長</span></p>
+      <div class="cst-prod-links">
+        <a class="cst-textlink" href="https://studytour.cebumoriyama.com" target="_blank" rel="noopener">セブ島スタディツアー公式サイト <span aria-hidden="true">↗</span></a>
+        <a class="cst-textlink" href="https://prod-fukuoka.jp/#vision">PRODの理念・ビジョン <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="cst-footer">
+    <div class="cst-wrap">
+      <div class="cst-footer-top">
+        <span class="cst-logo"><span class="cst-logo-en" style="font-size:21px">PROD</span><span class="cst-logo-ja">株式会社<br>PROD</span></span>
+        <nav class="cst-footer-nav" aria-label="フッターメニュー">
+          <a href="#cst-about">概要</a>
+          <a href="#cst-results">実績</a>
+          <a href="#cst-program">プログラム</a>
+          <a href="#cst-case">事例</a>
+          <a href="#cst-history">歩み</a>
+          <a href="#cst-message">代表</a>
+        </nav>
+      </div>
+      <div class="cst-footer-info">
+        <div><b>株式会社PROD</b>〒810-0001<br>福岡県福岡市中央区天神一丁目11番1号<br>ONE FUKUOKA BLDG. 7階</div>
+        <div>TEL：<a href="tel:0924012061">092-401-2061</a><br>公式：<a class="is-blue" href="https://prod-fukuoka.jp/">https://prod-fukuoka.jp/</a></div>
+        <div><b>セブ島スタディツアー</b><a class="is-blue" href="https://studytour.cebumoriyama.com" target="_blank" rel="noopener">studytour.cebumoriyama.com</a></div>
+      </div>
+      <p class="cst-copy">© 株式会社PROD All Rights Reserved.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var root=document.getElementById('cst-lp');
+  if(!root||!('IntersectionObserver' in window))return;
+  root.classList.add('cst-js');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});
+  },{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+  root.querySelectorAll('.cst-rv').forEach(function(el){io.observe(el);});
+})();
+</script>
