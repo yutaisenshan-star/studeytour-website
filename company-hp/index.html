@@ -17,8 +17,8 @@
 :where(.cst-lp) :is(h1,h2,h3,p,ul,ol,li,figure,blockquote){margin:0;padding:0}
 :where(.cst-lp) :is(ul,ol){list-style:none}
 /* 写真枠: 縦長写真でも枠の比率を崩さない */
-.cst-card-photo,.cst-step-photo,.cst-tl-photo,.cst-purpose-photo,.cst-safety-photo,.cst-msg-photo{position:relative;overflow:hidden}
-.cst-card-photo img,.cst-step-photo img,.cst-tl-photo img,.cst-purpose-photo img,.cst-safety-photo img,.cst-msg-photo img{position:absolute;inset:0}
+.cst-card-photo,.cst-step-photo,.cst-tl-photo,.cst-purpose-photo,.cst-safety-photo{position:relative;overflow:hidden}
+.cst-card-photo img,.cst-step-photo img,.cst-tl-photo img,.cst-purpose-photo img,.cst-safety-photo img{position:absolute;inset:0}
 
 /* layout */
 .cst-sec{padding:clamp(56px,7vw,96px) clamp(16px,3vw,34px)}
@@ -174,14 +174,11 @@
 @media (max-width:820px){.cst-safety{grid-template-columns:1fr}}
 
 /* message */
-.cst-msg{display:grid;grid-template-columns:260px 1fr;gap:clamp(28px,5vw,60px);align-items:start}
-.cst-msg-photo{border-radius:14px;overflow:hidden;aspect-ratio:1/1;box-shadow:0 14px 34px rgba(22,41,78,.14)}
-.cst-msg-photo img{width:100%;height:100%;object-fit:cover}
-.cst-msg-name{margin-top:16px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:22px;color:var(--navy)}
-.cst-msg-role{font-size:12.5px;color:var(--muted);line-height:1.7;margin-top:4px}
 .cst-msg .cst-h2{font-size:clamp(24px,3.2vw,34px)}
 .cst-msg-body p{margin-top:16px}
-@media (max-width:820px){.cst-msg{grid-template-columns:1fr}.cst-msg-side{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center}.cst-msg-name{margin-top:0}}
+.cst-msg-sign{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);text-align:right}
+.cst-msg-name{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:22px;color:var(--navy)}
+.cst-msg-role{font-size:12.5px;color:var(--muted);line-height:1.7;margin-top:4px}
 
 /* from prod */
 .cst-prod{text-align:center}
@@ -244,7 +241,7 @@
       <div class="cst-hero-box cst-rv">
         <span class="cst-hero-eyebrow">CEBU STUDY TOUR</span>
         <h1 class="cst-h1">知らない環境で、<br>自分で決めて<br><span>動く8日間。</span></h1>
-        <p class="cst-hero-lead">セブ島スタディツアーは、PRODの社員・森山裕太が代表を務め、2023年から続けている学生向けの海外研修プログラムです。フィリピン・セブ島を舞台に、参加者が自ら企画を立て、現地で実践し、仲間と振り返る。観光でも語学留学でもない、経験から学ぶ8日間をつくっています。</p>
+        <p class="cst-hero-lead">セブ島スタディツアーは、PRODの森山裕太が代表を務め、2023年から続けている学生向けの海外研修プログラムです。フィリピン・セブ島を舞台に、参加者が自ら企画を立て、現地で実践し、仲間と振り返る。観光でも語学留学でもない、経験から学ぶ8日間をつくっています。</p>
         <ul class="cst-hero-tags">
           <li>フィリピン・セブ島</li>
           <li>8日間</li>
@@ -492,19 +489,16 @@
   <!-- ============ 9. MESSAGE ============ -->
   <section class="cst-sec" id="cst-message">
     <div class="cst-wrap cst-narrow cst-msg">
-      <div class="cst-msg-side cst-rv">
-        <figure class="cst-msg-photo"><img src="images/representative.jpg" alt="セブ島スタディツアー代表 森山裕太" loading="lazy"></figure>
-        <div>
-          <p class="cst-msg-name">森山 裕太</p>
-          <p class="cst-msg-role">セブ島スタディツアー 代表<br>株式会社PROD 学生／人材事業部 責任者</p>
-        </div>
-      </div>
       <div class="cst-msg-body cst-rv">
         <span class="cst-eyebrow">MESSAGE</span>
         <h2 class="cst-h2">不安だらけの出発が、<br><em>すべての原点</em>になった。</h2>
         <p>僕も、最初は参加者でした。初めての海外へ出発する直前、現地を案内するはずだった先輩が来られなくなり、英語もほとんど話せないまま、年下の4人を連れてセブへ向かいました。</p>
         <p>現地では、それぞれが自分で決めた企画に挑戦しました。うまくいかなければ仲間に相談し、方法を変えて、もう一度動く。参加者が少しずつ表情や言葉を変えていく姿を、そばで見ていました。</p>
         <p>8日間ですべてが変わるわけではありません。それでも、自分で選び、動いた経験は、帰国後の一歩を少し変えることがあります。あの日見た「自分から動き出す瞬間」を、これからも参加者と一緒につくっていきます。</p>
+        <div class="cst-msg-sign">
+          <p class="cst-msg-name">森山 裕太</p>
+          <p class="cst-msg-role">セブ島スタディツアー 代表<br>株式会社PROD 学生／人材事業部 責任者</p>
+        </div>
       </div>
     </div>
   </section>
@@ -513,8 +507,8 @@
   <section class="cst-sec cst-bg-navy" id="cst-prod">
     <div class="cst-wrap cst-narrow cst-prod cst-rv">
       <span class="cst-eyebrow">FROM PROD</span>
-      <h2 class="cst-h2">社員の挑戦を、<br><em>PRODは応援しています。</em></h2>
-      <p class="cst-prod-body">PRODは「人の可能性を解放する」をミッションに、若者の挑戦と企業の成長を支えています。<br>社員の森山が続けてきたセブ島スタディツアーは、知らない環境で自ら考え、試し、視野を広げていく場です。私たちが大切にする考え方を、海外という環境で体現する取り組みとして、PRODはこの挑戦を応援しています。</p>
+      <h2 class="cst-h2">人の可能性を、<br><em>知らない環境でひらく。</em></h2>
+      <p class="cst-prod-body">PRODは「人の可能性を解放する」をミッションに、若者の挑戦と企業の成長をつなぐ取り組みを続けています。<br>知らない環境で自ら考え、試し、視野を広げていくセブ島スタディツアーは、私たちが大切にする考え方と重なる取り組みです。<br>これからも、若者が「想い」を「カタチ」に変えるきっかけを広げていきます。</p>
       <p class="cst-prod-concept" aria-label="PRODのコンセプト：思考、実践、視野拡張、再成長"><span>思考</span><i>→</i><span>実践</span><i>→</i><span>視野拡張</span><i>→</i><span>再成長</span></p>
       <div class="cst-prod-links">
         <a class="cst-textlink" href="https://studytour.cebumoriyama.com" target="_blank" rel="noopener">セブ島スタディツアー公式サイト <span aria-hidden="true">↗</span></a>
